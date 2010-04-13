@@ -1,0 +1,2 @@
+var RestObject = Klass(StateMachine, 
+});
