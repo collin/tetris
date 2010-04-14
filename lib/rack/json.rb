@@ -17,7 +17,7 @@ module Rack
       request = Rack::Request.new(env)
       decode_json!(request)
       status, headers, body = @app.call env
-      body = ::JSON.dump body if headers['Content-Type'] and headers['Content-Type'][Mime]
+      body = ::JSON.dump(body.body_parts) if headers['Content-Type'] and headers['Content-Type'][Mime]
       [status, headers, body]
     end
    

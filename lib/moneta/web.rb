@@ -7,7 +7,6 @@ module Moneta::Web
   
     Okay = [200, {}, []].freeze
     NotFound = [404, {}, []].freeze
-    BadRequest = [400, {}, []].freeze
     module Mime
       Json = "application/json".freeze
     end
@@ -16,9 +15,10 @@ module Moneta::Web
   class NoBackendError < ArgumentError; end
 
   def self.root
-    @root ||= Pathname.new(__FILE__).dirname.expand_path
+    @root ||= Pathname.new(__FILE__).dirname.expand_path + ".."
   end
   
-  require root+"web/request"
-  require root+"web/server"
+  require root+"rack/json"
+  require root+"moneta/web/controller"
+  require root+"moneta/web/server"
 end
