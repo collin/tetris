@@ -58,6 +58,7 @@ jQuery(function($) {
     $.ajax({
       type: 'post'
       ,url: 'http://localhost:8080/tetris/db/blocks'
+      ,contentType: 'applcation/json'
       ,data: JSON.stringify({rotations: []})
       ,complete: function(xhr) {
         console.log(xhr.getResponseHeader("Location"))        

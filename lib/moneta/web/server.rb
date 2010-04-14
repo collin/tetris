@@ -19,6 +19,7 @@ class Moneta::Web::Server
   def call(env)
     @request = Request.new(env)
     _, endpoint, id = *@request.path.match(@regexp)
+    logger.info "#{@request.request_method} #{@request.path_info}"
     return NotFound unless endpoint
     id ? member(endpoint, id) : collection(endpoint)
   end
